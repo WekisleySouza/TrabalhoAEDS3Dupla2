@@ -1,3 +1,5 @@
+import java.io.File;
+
 public class Arquivos {
     private int numeroDeRegistros = 0;
     private int acessosTotal = 0;
@@ -11,6 +13,12 @@ public class Arquivos {
 
     
     public Arquivos(int numeroDeRegistros){
+        this.deletarArquivo("RegistrosPrimeiraEtapa//RegistroInicial.csv");
+        for(int i = 1; i < 9; i++){
+            this.deletarArquivo("RegistrosSegundaEtapa//Caminho_" + i + ".csv");
+        }
+        this.deletarArquivo("RegistrosTerceiraEtapa//RegistroFinal.csv");
+
         if(numeroDeRegistros % 8 == 0){
             this.numeroDeRegistros = numeroDeRegistros;
             this.criarArquivoComRegistros();
@@ -78,5 +86,10 @@ public class Arquivos {
     private void fazerIntercalacao(){
         int tamanhoCaminhos = this.numeroDeRegistros / 8;
         ArquivoRegistros arquivo = new ArquivoRegistros("RegistrosTerceiraEtapa//RegistroFinal.csv", "RegistrosSegundaEtapa//Caminho_", tamanhoCaminhos);
+    }
+
+    private void deletarArquivo(String path){
+        File arquivo = new File(path);
+        arquivo.delete();
     }
 }
