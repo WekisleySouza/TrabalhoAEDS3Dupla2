@@ -154,7 +154,7 @@ public class ArquivoRegistros {
 				if(cont == 1 && this.caso == 3){
 					registros.remove(0);
 				}
-				if(this.caso == 3 || this.caso == 2){
+				if(this.caso == 3){
 					registros.add(this.converteStringParaRegistro(linha));
 				}
 				linha = br.readLine();
