@@ -1,11 +1,13 @@
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Arquivos {
     private int numeroDeRegistros = 0;
-    private int acessosTotal = 0;
-    private int comparacoesTotal = 0;
-    private int trocasTotal = 0;
-    private long tempoTotal = 0;
+    private int acessosIntercalacao = 0;
+    private int comparacoesIntercalacao = 0;
+    private int trocasIntercalacao = 0;
+    private long tempoIntercalacao = 0;
     private long[] tempoCaminhos = new long[8];
     private long[] acessosCaminhos = new long[8];
     private long[] trocasCaminhos = new long[8];
@@ -43,20 +45,20 @@ public class Arquivos {
         return comparacoesCaminhos;
     }
 
-    public int getAcessosTotal() {
-        return acessosTotal;
+    public int getAcessosIntercalacao() {
+        return acessosIntercalacao;
     }
 
-    public int getComparacoesTotal() {
-        return comparacoesTotal;
+    public int getComparacoesIntercalacao() {
+        return comparacoesIntercalacao;
     }
 
-    public int getTrocasTotal() {
-        return trocasTotal;
+    public int getTrocasIntercalacao() {
+        return trocasIntercalacao;
     }
 
-    public long getTempoTotal() {
-        return tempoTotal;
+    public long getTempoIntercalacao() {
+        return tempoIntercalacao;
     }
 
     private void criarArquivoComRegistros(){
@@ -86,10 +88,20 @@ public class Arquivos {
     private void fazerIntercalacao(){
         int tamanhoCaminhos = this.numeroDeRegistros / 8;
         ArquivoRegistros arquivo = new ArquivoRegistros("RegistrosTerceiraEtapa//RegistroFinal.csv", "RegistrosSegundaEtapa//Caminho_", tamanhoCaminhos);
+        this.acessosIntercalacao = arquivo.getAcessos();
+        this.comparacoesIntercalacao = arquivo.getComparacoes();
+        this.trocasIntercalacao = arquivo.getTrocas();
+        this.tempoIntercalacao = arquivo.getTempo();
     }
 
     private void deletarArquivo(String path){
         File arquivo = new File(path);
         arquivo.delete();
+    }
+
+    public List<Registro> pegarPrimeiros(int quantidade){
+        List<Registro> registros = new ArrayList<Registro>();
+        new ArquivoRegistros(quantidade, registros);
+        return registros;
     }
 }

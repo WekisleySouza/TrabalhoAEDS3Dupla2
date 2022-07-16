@@ -25,8 +25,6 @@ public class Funcoes {
                         resposta = -1;
                     }else if(ordem == 0){
                         resposta = 0;
-                    }else{
-                        resposta = 1;
                     }
                 }
             }

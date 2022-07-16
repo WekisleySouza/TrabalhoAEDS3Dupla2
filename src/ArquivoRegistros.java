@@ -40,24 +40,33 @@ public class ArquivoRegistros {
         this.registros = new ArrayList<Registro>();
 		this.caso = 3;
 		this.path = path;
+		this.tempo = Funcoes.pegaTempo();
 		this.intercalarCaminhos(pathBase);
+		this.tempo = Funcoes.pegaTempo() - this.tempo;
 	}
 
-	
+	public ArquivoRegistros(int quantidade, List<Registro> registros){
+		this.registros = new ArrayList<Registro>();
+        this.path = "RegistrosTerceiraEtapa//RegistroFinal.csv";
+		this.caminhoInicio = 1;
+		this.caminhoFim = quantidade;
+		this.LerArquivo(this.path, registros);
+	}
+
     public int getAcessos() {
-		return acessos;
+		return this.acessos;
 	}
 
 	public int getComparacoes() {
-		return comparacoes;
+		return this.comparacoes;
 	}
 
 	public int getTrocas() {
-		return trocas;
+		return this.trocas;
 	}
 
 	public long getTempo() {
-		return tempo;
+		return this.tempo;
 	}
 
 	public void setTempo(long tempo) {
@@ -65,7 +74,7 @@ public class ArquivoRegistros {
 	}
 
 	public String getPath() {
-		return path;
+		return this.path;
 	}
 	
 	public void setPath(String path) {
@@ -73,7 +82,7 @@ public class ArquivoRegistros {
 	}
 	
 	public List<Registro> getRegistros() {
-		return registros;
+		return this.registros;
 	}
 	
 	public void setRegistros(List<Registro> registros) {
@@ -96,14 +105,19 @@ public class ArquivoRegistros {
 		for(int i = 0; i < listaRegistros.size(); i++){
 			if(i == 0 && listaRegistros.get(i).get(0) != null){
 				menor = listaRegistros.get(i).get(0);
+				this.acessos++;
 				indexMenor = i;
 			}else if(Funcoes.comparaRegistros(menor, listaRegistros.get(i).get(0)) == 1 && listaRegistros.get(i).get(0) != null){
+				this.comparacoes++;
 				indexMenor = i;
+				this.acessos+=3;
+				this.trocas++;
 				menor = listaRegistros.get(i).get(0);
 			}
 		}
 		this.registros.add(menor);
 		listaRegistros.get(indexMenor).remove(0);
+		this.acessos++;
 		this.EscreverArquivo(this.path, true);
 		this.registros.remove(0);
 		this.removerListasVazias(listaRegistros);
@@ -115,6 +129,7 @@ public class ArquivoRegistros {
 	private void removerListasVazias(List<List<Registro>> listaRegistros){
 		for(int i = 0; i < listaRegistros.size(); i++){
 			if(this.ListaEVazia(listaRegistros.get(i))){
+				this.acessos++;
 				listaRegistros.remove(i);
 			}
 		}
@@ -144,16 +159,13 @@ public class ArquivoRegistros {
 		try(BufferedReader br = new BufferedReader(new FileReader(path))){
 			String linha = br.readLine();
 			int cont = 0;
+			if(this.caso == 3){
+				registros.remove(0);
+			}
 			while(linha != null){
 				cont++;
-				// if(this.caso == 1){
-				// 	registros.add(this.converteStringParaRegistro(linha));
-				// }
 				if(cont >= this.caminhoInicio && cont <= this.caminhoFim){
 					registros.add(this.converteStringParaRegistro(linha));
-				}
-				if(cont == 1 && this.caso == 3){
-					registros.remove(0);
 				}
 				if(this.caso == 3){
 					registros.add(this.converteStringParaRegistro(linha));
@@ -164,7 +176,7 @@ public class ArquivoRegistros {
 		catch(FileNotFoundException erro){
             if(this.caso == 1){
                 for(int i = 0; i < this.numeroDeRegistros; i++){
-                    this.criaRegistro();
+                    this.criaRegistro(i);
                 }
             }
 			this.EscreverArquivo(path, false);
@@ -174,8 +186,8 @@ public class ArquivoRegistros {
 		}
 	}
 
-    private void criaRegistro(){
-		Registro registro = gera_registro(Funcoes.gera_numero_aleatorio(0, 100));
+    private void criaRegistro(int id){
+		Registro registro = gera_registro(id);
 		this.registros.add(registro);
 	}
 	
