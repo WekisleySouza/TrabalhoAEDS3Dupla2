@@ -88,9 +88,6 @@ public class ArquivoRegistros {
 			this.LerArquivo(pathBase + Integer.toString(i + 1) + ".csv", listaRegistros.get(i));
 		}
 		fazerIntercalacao(listaRegistros);
-		this.EscreverArquivo(this.path);
-		System.out.println("1");
-
 	}
 	
 	private void fazerIntercalacao(List<List<Registro>> listaRegistros){
@@ -107,9 +104,10 @@ public class ArquivoRegistros {
 		}
 		this.registros.add(menor);
 		listaRegistros.get(indexMenor).remove(0);
+		this.EscreverArquivo(this.path, true);
+		this.registros.remove(0);
 		this.removerListasVazias(listaRegistros);
 		if(listaRegistros.size() != 0){
-			System.out.println(listaRegistros.size());
 			fazerIntercalacao(listaRegistros);
 		}
 	}
@@ -135,7 +133,7 @@ public class ArquivoRegistros {
 	private void criarCaminho(String pathBase){
 		this.LerArquivo(pathBase, this.registros);
 		MergeSort merge = new MergeSort(this.registros);
-		this.EscreverArquivo(this.path);
+		this.EscreverArquivo(this.path, false);
 		this.acessos = merge.getAcessos();
 		this.comparacoes = merge.getComparacoes();
 		this.trocas = merge.getTrocas();
@@ -148,6 +146,9 @@ public class ArquivoRegistros {
 			int cont = 0;
 			while(linha != null){
 				cont++;
+				// if(this.caso == 1){
+				// 	registros.add(this.converteStringParaRegistro(linha));
+				// }
 				if(cont >= this.caminhoInicio && cont <= this.caminhoFim){
 					registros.add(this.converteStringParaRegistro(linha));
 				}
@@ -166,7 +167,7 @@ public class ArquivoRegistros {
                     this.criaRegistro();
                 }
             }
-			this.EscreverArquivo(path);
+			this.EscreverArquivo(path, false);
 		}
 		catch(IOException erro){
 			System.out.println("Error: " + erro);
@@ -178,8 +179,8 @@ public class ArquivoRegistros {
 		this.registros.add(registro);
 	}
 	
-	private void EscreverArquivo(String path){
-		try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
+	private void EscreverArquivo(String path, boolean adicionar){
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, adicionar))){
 			for(Registro linha : this.registros){
 				bw.write(this.converteRegistroParaString(linha));
 				bw.newLine();
