@@ -8,9 +8,6 @@ public class ArquivoFinalIntercalado {
     }
 
     private static void intercalaCaminhos(List<CaminhoExistente> caminhos) {
-        caminhos = new ArrayList<>(caminhos); // shallow copy
-        int caminhosSize = caminhos.size();
-
         while(!caminhos.isEmpty()) {
             Registro menorRegistro = retiraMenorRegistro(caminhos);
             escreverNoRegistroFinal(menorRegistro);
