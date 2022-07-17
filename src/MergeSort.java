@@ -14,35 +14,7 @@ public class MergeSort {
         this.performaOrdenacao(listaRegistros, this.registrosMerge, 0, listaRegistros.size() - 1);
         cronometro.parar();
     }
-    
-    public int getTrocas() {
-        return trocas;
-    }
 
-    public void setTrocas(int trocas) {
-        this.trocas = trocas;
-    }
-
-
-    public long getTempo() {
-        return cronometro.getTempo();
-    }
-    
-    public int getAcessos() {
-        return acessos;
-    }
-    
-    public void setAcessos(int acessos) {
-        this.acessos = acessos;
-    }
-    
-    public int getComparacoes() {
-        return comparacoes;
-    }
-    
-    public void setComparacoes(int comparacoes) {
-        this.comparacoes = comparacoes;
-    }
 
     // Ordena o vetor usando MergeSort
     private void performaOrdenacao(List<Registro> registros, List<Registro> registrosMerge, int inicio, int fim) {
@@ -90,4 +62,16 @@ public class MergeSort {
             }
         }
     }
+
+    public long getTempo() { 
+        return cronometro.getTempo(); 
+    }
+
+    // GETTER E SETTTERS
+    public int getTrocas() { return trocas; }
+
+    public int getAcessos() { return acessos; }
+
+    public int getComparacoes() { return comparacoes; }
+    
 }

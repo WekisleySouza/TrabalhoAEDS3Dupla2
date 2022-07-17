@@ -87,20 +87,6 @@ public class Registro {
 		getCpf());
 	}
 	
-	// talvez nao vá usar
-    @Override
-    public String toString(){
-        return 
-        "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n" +
-		"Id: " + this.id +
-        "\nNome: " + this.nome +
-		"\nIdade: " + this.idade +
-		"\nSexo: " + this.sexo +
-		"\nCpf: " + this.cpf +
-		"\nCep: " + this.cep +
-		"\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
-    }
-
 	// SETTERS E GETTERS 
 	public String getCep(){	return this.cep; }
 	public void setCep(String cep){	this.cep = cep;	}

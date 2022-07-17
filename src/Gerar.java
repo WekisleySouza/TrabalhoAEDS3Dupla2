@@ -67,9 +67,11 @@ public class Gerar {
 	}
 
 	static public String cep(){
-		String cep = "";
-		cep += String.format("%05d-", Gerar.inteiro(0, 99999));
-		cep += String.format("%03d", Gerar.inteiro(0, 99));
-		return cep;
+		String[] ceps = {
+			"36180-000", "25500-000", "36140-000", "37510-234", "12240-000",
+			"34567-111", "76456-322", "45654-987", "98765-216", "40000-000"
+			};
+			
+		return ceps[Gerar.inteiro(0, 10-1)];
 	}
 }

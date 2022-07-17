@@ -6,6 +6,12 @@ public class App {
         ArquivoComRegistrosAleatorios.criar("dadosIniciais", numeroDeRegistros);
         ArquivosDosCaminhos.criar(numeroDeRegistros);
         ArquivoFinalIntercalado.criar("dadosOrdenados");
+
+        System.out.println("10 PRIMEIROS DADOS INICIAIS:");
+        (new PrimeirosDezRegistros("arquivos//dadosIniciais.csv")).imprimir();
+
+        System.out.println("10 PRIMEIROS DADOS FINAIS (ORDENADOS):");
+        (new PrimeirosDezRegistros("arquivos//dadosOrdenados.csv")).imprimir();
         
     }
 
@@ -21,7 +27,7 @@ public class App {
             + Integer.toString(numeroDeRegistros)
             + "] foi escolhido, então foi feito um arredondamento para "
             + Integer.toString(novoNumeroDeRegistros)
-            + " registros");
+            + " registros\n");
 
         return novoNumeroDeRegistros;
     }
