@@ -8,10 +8,10 @@ public class App {
         ArquivoFinalIntercalado.criar("dadosOrdenados");
 
         System.out.println("10 PRIMEIROS DADOS INICIAIS:");
-        (new PrimeirosDezRegistros("arquivos//dadosIniciais.csv")).imprimir();
+        (new TabelaRegistros("arquivos//dadosIniciais.csv", 10)).imprimir();
 
         System.out.println("10 PRIMEIROS DADOS FINAIS (ORDENADOS):");
-        (new PrimeirosDezRegistros("arquivos//dadosOrdenados.csv")).imprimir();
+        (new TabelaRegistros("arquivos//dadosOrdenados.csv", 10)).imprimir();
         
     }
 

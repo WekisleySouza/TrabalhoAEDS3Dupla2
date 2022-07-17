@@ -1,10 +1,12 @@
 import java.util.List;
 
-public class PrimeirosDezRegistros extends Tabela{
+public class TabelaRegistros extends Tabela{
 	private List<Registro> registros;
+	private int quantidade;
 
-	public PrimeirosDezRegistros(String path) {
+	public TabelaRegistros(String path, int quantidade) {
 		this.registros = ArquivoUtils.ler(path); 
+		this.quantidade = quantidade;
 		criarEsqueleto();
 		inserirDezPrimeiros();
 	}
@@ -15,7 +17,7 @@ public class PrimeirosDezRegistros extends Tabela{
 	}
 
 	private void inserirDezPrimeiros(){
-		for(int i=0; i<10; i++){
+		for(int i=0; i<this.quantidade; i++){
 			inserirRegistro(i);
 		}
 		adicionaLinha("");
