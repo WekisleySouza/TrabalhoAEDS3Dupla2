@@ -1,6 +1,3 @@
-import java.util.List;
-import java.util.ArrayList;
-
 public class ArquivosDosCaminhos {
     public static void criar(int numeroDeRegistros){
         int tamanhoCaminho = numeroDeRegistros / 8;
