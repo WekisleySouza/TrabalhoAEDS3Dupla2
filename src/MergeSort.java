@@ -2,18 +2,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MergeSort {
-
     private List<Registro> registrosMerge;
     private int acessos = 0;
     private int comparacoes = 0;
     private int trocas = 0;
-    private long tempo = 0;
+    private Cronometro cronometro = new Cronometro();
     
     public MergeSort(List<Registro> listaRegistros){
         this.registrosMerge = new ArrayList<Registro>(listaRegistros);
-        this.tempo = Funcoes.pegaTempo();
+        cronometro.comecar();
         this.performaOrdenacao(listaRegistros, this.registrosMerge, 0, listaRegistros.size() - 1);
-        this.tempo = Funcoes.pegaTempo() - this.tempo;
+        cronometro.parar();
     }
     
     public int getTrocas() {
@@ -26,11 +25,7 @@ public class MergeSort {
 
 
     public long getTempo() {
-        return tempo;
-    }
-
-    public void setTempo(long tempo) {
-        this.tempo = tempo;
+        return cronometro.getTempo();
     }
     
     public int getAcessos() {
@@ -82,7 +77,7 @@ public class MergeSort {
                 this.trocas++;
                 this.comparacoes += 2;
 
-            }else if(Funcoes.comparaRegistros(registrosMerge.get(i), registrosMerge.get(j)) == -1) {
+            }else if(Registro.comparaRegistros(registrosMerge.get(i), registrosMerge.get(j)) == -1) {
                 registros.set(k, registrosMerge.get(i++));
                 this.trocas++;
                 this.acessos += 3;
