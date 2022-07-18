@@ -49,10 +49,11 @@ public class Registro {
         return getNome().compareTo(outro.getNome());
     }
 
+	// Alterei esse método também:
 	public void preencherAleatorio(){
-		setNome(Gerar.nome());
 		setIdade(Gerar.idade());
 		setSexo(Gerar.sexo());
+		setNome(Gerar.nome(this.sexo));
 		setCpf(Gerar.cpf());
 		setCep(Gerar.cep());
 	}

@@ -45,6 +45,21 @@ public class ArquivoUtils {
         return Registro.manyFromCSV(linhas.toArray(new String[0]));
     }
 
+    // Criei essa função também:
+    public static String lerNome(String path, int linha){
+        String parteNome = "";
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            for (int i = 0; i < linha; i++) {
+                br.readLine();
+            }
+            parteNome = br.readLine();
+        }
+        catch(IOException e){
+          System.out.println(e);
+        }
+        return parteNome;
+    }
+
     public static List<Registro> lerIntervalo(String path, int primeiraLinha, int ultimaLinha) {
         int quantidadeLinhas = ultimaLinha - primeiraLinha;
         String[] linhas = new String[quantidadeLinhas];

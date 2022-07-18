@@ -21,14 +21,34 @@ public class Gerar {
 		return registros;
 	}
 
-    static public String nome(){
-		int maxChars = ((80-2)/3);
-		String[] nomes = new String[3];
-		for(int i = 0; i < 3; i++){
-			nomes[i] = umNome(maxChars);
+	// Criei essa função:
+	static public String nome(char sexo){
+		String path = "banco//";
+		int max = 0;
+
+		if(sexo == 'F'){
+			path += "nomes_femininos.csv";
+			max = 131;
+		}else{
+			path += "nomes_masculinos.csv";
+			max = 211;
 		}
-		return String.join(" ", nomes);
+
+		String nome = ArquivoUtils.lerNome(path, Gerar.inteiro(1, max));
+		String sobrenome = ArquivoUtils.lerNome("banco//sobrenomes.csv", Gerar.inteiro(1, 59));
+		sobrenome += " " + ArquivoUtils.lerNome("banco//sobrenomes.csv", Gerar.inteiro(1, 59));
+
+		return nome + " " + sobrenome;
 	}
+
+    // static public String nome(){
+	// 	int maxChars = ((80-2)/3);
+	// 	String[] nomes = new String[3];
+	// 	for(int i = 0; i < 3; i++){
+	// 		nomes[i] = umNome(maxChars);
+	// 	}
+	// 	return String.join(" ", nomes);
+	// }
 
 	static public String umNome(int maxChars){
 		int charAmount = Gerar.inteiro(3, maxChars);
