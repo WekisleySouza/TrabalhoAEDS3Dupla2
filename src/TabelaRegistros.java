@@ -5,7 +5,7 @@ public class TabelaRegistros extends Tabela{
 	private int quantidade;
 
 	public TabelaRegistros(String path, int quantidade) {
-		this.registros = ArquivoUtils.ler(path); 
+		this.registros = ArquivoUtils.lerRegistros(path); 
 		this.quantidade = quantidade;
 		criarEsqueleto();
 		inserirDezPrimeiros();

@@ -27,7 +27,7 @@ public class ArquivoUtils {
         gravarRegistros(path, registros, adicionar);
     }
 
-    public static List<Registro> ler(String path) {
+    public static List<Registro> lerRegistros(String path) {
         List<String> linhas = new ArrayList<String>();
         String linha = "";
 

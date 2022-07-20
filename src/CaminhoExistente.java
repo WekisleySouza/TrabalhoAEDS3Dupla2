@@ -6,15 +6,15 @@ public class CaminhoExistente {
 
     public CaminhoExistente(int index) {
 		this.index = index;
-        this.registros = lerRegistros();
+        this.registros = lerRegistrosDoCaminho();
 	}
 
     private String caminhoPath(){
         return "arquivos//caminho" + (this.index + 1) + ".csv";
     }
 
-    private List<Registro> lerRegistros() {
-        return (List<Registro>) ArquivoUtils.ler(caminhoPath());
+    private List<Registro> lerRegistrosDoCaminho() {
+        return (List<Registro>) ArquivoUtils.lerRegistros(caminhoPath());
     }
 
     public Registro primeiroRegistro(){
