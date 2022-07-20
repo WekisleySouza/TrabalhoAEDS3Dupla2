@@ -35,7 +35,7 @@ public class CaminhoNovo {
     }
 
     private List<Registro> registrosDoCaminho() {
-        return (List<Registro>) ArquivoUtils.lerIntervalo(
+        return (List<Registro>) ArquivoUtils.lerRegistrosNoIntervalo(
             dadosIniciaisPath, 
             registroInicialIndex(), 
             registroFinalIndex()

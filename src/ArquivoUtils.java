@@ -60,7 +60,7 @@ public class ArquivoUtils {
         return parteNome;
     }
 
-    public static List<Registro> lerIntervalo(String path, int primeiraLinha, int ultimaLinha) {
+    public static List<Registro> lerRegistrosNoIntervalo(String path, int primeiraLinha, int ultimaLinha) {
         int quantidadeLinhas = ultimaLinha - primeiraLinha;
         String[] linhas = new String[quantidadeLinhas];
 
