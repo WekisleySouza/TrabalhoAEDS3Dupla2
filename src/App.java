@@ -5,7 +5,11 @@ public class App {
         ArquivoUtils.deletarArquivosPrevios();
         ArquivoComRegistrosAleatorios.criar("dadosIniciais", numeroDeRegistros);
         ArquivosDosCaminhos.criar(numeroDeRegistros);
-        ArquivoFinalIntercalado.criar("dadosOrdenados");
+
+        Cronometro cronometroIntercalar = new Cronometro();
+        cronometroIntercalar.comecar();
+        ArquivoFinalIntercalado.criar();
+        cronometroIntercalar.parar();
 
         System.out.println("10 PRIMEIROS DADOS INICIAIS:");
         (new TabelaRegistros("arquivos//dadosIniciais.csv", 10)).imprimir();

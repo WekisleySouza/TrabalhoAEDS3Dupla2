@@ -2,9 +2,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class ArquivoFinalIntercalado {
-    public static void criar(String nomeDoArquivo){
+    public static void criar(){
         List<CaminhoExistente> caminhos = todosOsCaminhos();
         intercalaCaminhos(caminhos);
+    }
+
+    private static String finalPath() {
+        return "arquivos//dadosOrdenados.csv";
     }
 
     private static void intercalaCaminhos(List<CaminhoExistente> caminhos) {
@@ -15,7 +19,7 @@ public class ArquivoFinalIntercalado {
     }
 
     private static void escreverNoRegistroFinal(Registro registro){
-        ArquivoUtils.gravarRegistro("arquivos//dadosOrdenados.csv", registro, true);
+        ArquivoUtils.gravarRegistro(finalPath(), registro, true);
     }
 
     private static Registro retiraMenorRegistro(List<CaminhoExistente> caminhos){
