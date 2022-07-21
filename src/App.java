@@ -31,7 +31,7 @@ public class App {
         (new TabelaRegistros("arquivos//dadosOrdenados.csv", 10)).imprimir();
 
         System.out.println("ALGUMAS ESTATISTICAS:");
-        (new TabelaEstatisticas()).imprimir();
+        (new TabelaEstatisticas(ordenacoes, cronometroOrdenacao.getTempo(), tempoIntercalar)).imprimir();
         
     }
 
