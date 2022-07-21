@@ -53,7 +53,7 @@ public class Registro {
 	public void preencherAleatorio(){
 		setIdade(Gerar.idade());
 		setSexo(Gerar.sexo());
-		setNome(Gerar.nome(this.sexo));
+		setNome(Gerar.nomeCompleto(this.sexo));
 		setCpf(Gerar.cpf());
 		setCep(Gerar.cep());
 	}

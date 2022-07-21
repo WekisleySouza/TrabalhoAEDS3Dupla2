@@ -21,24 +21,34 @@ public class Gerar {
 		return registros;
 	}
 
-	// Criei essa função:
+	// static private Object aleatorioDaLista(List<Object> lista) {
+
+	// }
+
+
 	static public String nome(char sexo){
-		String path = "banco//";
-		int max = 0;
+		List<String> nomes = ArquivoUtils.getNomes(sexo);
+		int size = nomes.size();
+		int index = inteiro(0, size-1);
+		return nomes.get(index);
 
-		if(sexo == 'F'){
-			path += "nomes_femininos.csv";
-			max = 131;
-		}else{
-			path += "nomes_masculinos.csv";
-			max = 211;
-		}
+	}
 
-		String nome = ArquivoUtils.lerNome(path, Gerar.inteiro(1, max));
-		String sobrenome = ArquivoUtils.lerNome("banco//sobrenomes.csv", Gerar.inteiro(1, 59));
-		sobrenome += " " + ArquivoUtils.lerNome("banco//sobrenomes.csv", Gerar.inteiro(1, 59));
+	static public String sobrenome(){
+		List<String> sobrenomes = ArquivoUtils.getSobrenomes();
+		int size = sobrenomes.size();
+		int index = inteiro(0, size-1);
+		return sobrenomes.get(index);
+	}
 
-		return nome + " " + sobrenome;
+	static public String nomeCompleto(char sexo){
+        String completo = String.format(
+			"%s %s %s",
+			nome(sexo),
+			sobrenome(),
+			sobrenome()
+			);
+		return completo;
 	}
 
     // static public String nome(){

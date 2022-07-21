@@ -1,6 +1,6 @@
 public class App {
     public static void main(String[] args){
-        int numeroDeRegistros = numeroDeRegistrosDivisivelPorOito(100);
+        int numeroDeRegistros = numeroDeRegistrosDivisivelPorOito(800);
 
         ArquivoUtils.deletarArquivosPrevios();
         ArquivoComRegistrosAleatorios.criar("dadosIniciais", numeroDeRegistros);
