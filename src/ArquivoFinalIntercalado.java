@@ -1,10 +1,12 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class ArquivoFinalIntercalado {
-    public static void criar(){
+public class ArquivoFinalIntercalado extends Cronometrado{
+    public void executar(){
+        cronometro.comecar();
         List<CaminhoExistente> caminhos = todosOsCaminhos();
         intercalaCaminhos(caminhos);
+        cronometro.parar();
     }
 
     private static String finalPath() {

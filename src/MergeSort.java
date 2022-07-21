@@ -6,13 +6,10 @@ public class MergeSort {
     private int acessos = 0;
     private int comparacoes = 0;
     private int trocas = 0;
-    private Cronometro cronometro = new Cronometro();
-    
+
     public MergeSort(List<Registro> listaRegistros){
         this.registrosMerge = new ArrayList<Registro>(listaRegistros);
-        cronometro.comecar();
         this.performaOrdenacao(listaRegistros, this.registrosMerge, 0, listaRegistros.size() - 1);
-        cronometro.parar();
     }
 
 
@@ -61,10 +58,6 @@ public class MergeSort {
                 this.comparacoes += 3;
             }
         }
-    }
-
-    public long getTempo() { 
-        return cronometro.getTempo(); 
     }
 
     // GETTER E SETTTERS

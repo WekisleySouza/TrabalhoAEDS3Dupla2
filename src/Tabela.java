@@ -19,7 +19,7 @@ public class Tabela {
     }
 
     public void adicionaNaUltimaLinha(String extra) {
-        int index = linhas.size()-1;
+        int index = indexUltimaLinha();
         String linha = linhas.get(index) + extra;
         linhas.set(index, linha);
     }
@@ -46,6 +46,10 @@ public class Tabela {
         for(int i = 0; i < linhas.size(); i++) {
             normalizaLinha(i, tamanhoEsperado);
         }   
+    }
+
+    public int indexUltimaLinha(){
+        return linhas.size()-1;
     }
 
     public static String inteiroPelaDireita(int inteiro, int tamanhoString){

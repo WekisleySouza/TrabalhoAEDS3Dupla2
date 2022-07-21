@@ -6,10 +6,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 public class ArquivoUtils {
     private static List<List<String>> nomes = new ArrayList<List<String>>();
     private static List<String> sobrenomes = new ArrayList<String>();
+    private static HashMap<String, Integer> acessosPorArquivo = new HashMap<String, Integer>();
 
     public static void gravarRegistros(String path, List<Registro> registros, boolean adicionar){
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, adicionar))){
@@ -17,6 +19,7 @@ public class ArquivoUtils {
 				bw.write(registro.toCSV());
 				bw.newLine();
 			}
+            registrarAcesso(path);
 		}
 		catch(IOException erro){
 			erro.printStackTrace();
@@ -40,11 +43,11 @@ public class ArquivoUtils {
                 if (linha == null) { break; };
                 linhas.add(linha);
             }
+            registrarAcesso(path);
         }
         catch(IOException e){
           System.out.println(e);
         }
-
         return linhas;
     }
 
@@ -61,6 +64,21 @@ public class ArquivoUtils {
         }
 
         return nomes.get(index);
+    }
+
+    public static HashMap<String, Integer> getAcessosPorArquivo() {
+        return acessosPorArquivo;
+    }
+
+    private static void registrarAcesso(String path){
+        String nomeDoArquivo = path.substring(path.lastIndexOf("/") + 1);
+
+        Object acessos = acessosPorArquivo.get(nomeDoArquivo);
+        if(acessos == null) { 
+            acessosPorArquivo.put(nomeDoArquivo, 1);
+            return;
+        }
+        acessosPorArquivo.put(nomeDoArquivo, (int)acessos+1);
     }
 
     public static List<String> getSobrenomes() {
