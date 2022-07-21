@@ -2,7 +2,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class ArquivoFinalIntercalado extends Cronometrado{
+    private List<Registro> filaParaGravar;
+    private final static int MAX_GRAVACOES_POR_VEZ = 100000;
+
     public void executar(){
+        this.filaParaGravar = new ArrayList<Registro>();
         cronometro.comecar();
         List<CaminhoExistente> caminhos = todosOsCaminhos();
         intercalaCaminhos(caminhos);
@@ -13,15 +17,19 @@ public class ArquivoFinalIntercalado extends Cronometrado{
         return "arquivos//dadosOrdenados.csv";
     }
 
-    private static void intercalaCaminhos(List<CaminhoExistente> caminhos) {
+    private void intercalaCaminhos(List<CaminhoExistente> caminhos) {
         while(!caminhos.isEmpty()) {
             Registro menorRegistro = retiraMenorRegistro(caminhos);
-            escreverNoRegistroFinal(menorRegistro);
+            colocarNaFilaDeGravacaoNoRegistroFinal(menorRegistro);
         }
     }
 
-    private static void escreverNoRegistroFinal(Registro registro){
-        ArquivoUtils.gravarRegistro(finalPath(), registro, true);
+    private void colocarNaFilaDeGravacaoNoRegistroFinal(Registro registro){
+        filaParaGravar.add(registro);
+        if(filaParaGravar.size() >= MAX_GRAVACOES_POR_VEZ){
+            ArquivoUtils.gravarRegistros(finalPath(), filaParaGravar, true);
+            filaParaGravar.clear();
+        }
     }
 
     private static Registro retiraMenorRegistro(List<CaminhoExistente> caminhos){
