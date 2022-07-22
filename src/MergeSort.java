@@ -7,6 +7,7 @@ public class MergeSort {
     private int comparacoes = 0;
     private int trocas = 0;
 
+    // Construtor
     public MergeSort(List<Registro> listaRegistros){
         this.registrosMerge = new ArrayList<Registro>(listaRegistros);
         this.performaOrdenacao(listaRegistros, this.registrosMerge, 0, listaRegistros.size() - 1);

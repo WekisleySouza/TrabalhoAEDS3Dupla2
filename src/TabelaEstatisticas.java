@@ -1,10 +1,10 @@
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class TabelaEstatisticas extends Tabela{
 	private List<MergeSort> ordenacoes;
 
+	// Construtor
 	public TabelaEstatisticas(List<MergeSort> ordenacoes, long tempoTotal, long tempoIntercalar) {
 		this.ordenacoes = ordenacoes;
 		tabelaDosArquivos();
@@ -18,6 +18,7 @@ public class TabelaEstatisticas extends Tabela{
 		adicionaLinha(textoTempo);
 	}
 
+	// Adiciona linha com arquivo e acessos do arquivo
 	private void adicionaLinhaArquivoEAcessos(String nomeDoArquivo) {
 		HashMap<String, Integer> acessosPorArquivo = ArquivoUtils.getAcessosPorArquivo();
 		int acessos = acessosPorArquivo.get(nomeDoArquivo);
@@ -27,6 +28,7 @@ public class TabelaEstatisticas extends Tabela{
 		adicionaNaUltimaLinha(acessos_formatado);
 	}
 
+	// Adiciona linha com trocas e comparações
 	private void adicionaLinhaComparacoesETrocas(MergeSort ordenacao) {
 		String comparacoes = String.format("%13d", ordenacao.getComparacoes());
 		String trocas = String.format("%12d", ordenacao.getTrocas());
@@ -34,6 +36,7 @@ public class TabelaEstatisticas extends Tabela{
 		adicionaNaUltimaLinha(trocas);
 	}
 
+	// Printa tabela com estatísticas
 	private void tabelaDosArquivos(){
 		adicionaLinha("NOME DO ARQUIVO      ACESSOS  COMPARACOES      TROCAS");
 		adicionaLinha("-------------------  -------  -----------  ----------");

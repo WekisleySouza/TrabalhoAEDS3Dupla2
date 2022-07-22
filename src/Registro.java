@@ -9,6 +9,7 @@ public class Registro {
 	private String nome;
 	private String cpf;
 	
+	// Construtor
 	public Registro() {
 		this.id = 0;
 		this.cep = "";
@@ -18,6 +19,7 @@ public class Registro {
 		this.cpf = "";
 	}
 
+	// Compara dois registros
     public static int comparaRegistros(Registro a, Registro b){
         int[][] paresDeAtributos = {
             {a.getCepComoInt(), b.getCepComoInt()},
@@ -37,19 +39,22 @@ public class Registro {
         return 0;
     }
 
+	// Retorna cep como inteiro
     public int getCepComoInt(){
         return Integer.parseInt(getCep().replace("-", ""));
     }
 
+	// Retorna sexo de acordo com a tabela ascci
     public int getSexoAsciiNumber(){
         return (int)getSexo();
     }
 
+	// Obtém um número de acordo com qual nome é menor (-2 --> primeiro é menor; 0 iguais; 2 --> O do parâmetro é menor)
     public int getNomeComparandoCom(Registro outro){
         return getNome().compareTo(outro.getNome());
     }
 
-	// Alterei esse método também:
+	//Preenche o registro com dados aleatórios
 	public void preencherAleatorio(){
 		setIdade(Gerar.idade());
 		setSexo(Gerar.sexo());
@@ -58,6 +63,7 @@ public class Registro {
 		setCep(Gerar.cep());
 	}
 
+	// Transforma string em registro
 	static Registro fromCSV(String csvString){
 		String[] atributos = csvString.split(";");
 		Registro registro = new Registro();
@@ -70,6 +76,7 @@ public class Registro {
 		return registro;
 	}
 
+	// Transforma uma lista de strings em uma lista de registros
 	static List<Registro> manyFromCSV(String[] linhas){
 		List<Registro> registros = new ArrayList<Registro>();
 		for (String linha : linhas){
@@ -78,6 +85,7 @@ public class Registro {
 		return registros;
 	}
 
+	// Retorna registro em forma de string
 	public String toCSV(){
 		return String.join( ";", 
 		String.valueOf(getId()), 

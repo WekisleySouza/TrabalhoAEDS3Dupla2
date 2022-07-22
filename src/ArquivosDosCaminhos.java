@@ -4,6 +4,7 @@ import java.util.List;
 public class ArquivosDosCaminhos {
     private List<MergeSort> ordenacoes;
 
+    // Executa criação dos caminhos
     public void executar(int numeroDeRegistros){
         this.ordenacoes = new ArrayList<MergeSort>();
 

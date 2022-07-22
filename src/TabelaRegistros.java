@@ -4,6 +4,7 @@ public class TabelaRegistros extends Tabela{
 	private List<Registro> registros;
 	private int quantidade;
 
+	// Construtor
 	public TabelaRegistros(String path, int quantidade) {
 		this.registros = ArquivoUtils.lerRegistros(path); 
 		this.quantidade = quantidade;
@@ -11,11 +12,13 @@ public class TabelaRegistros extends Tabela{
 		inserirDezPrimeiros();
 	}
 
+	// Cria esqueleto da tabela
 	private void criarEsqueleto(){
 		adicionaLinha("    ID CEP       SEXO IDADE NOME                                                                    CPF");
 		adicionaLinha("------ --------- ---- ----- ----------------------------------------------------------------------- --------------");
 	}
 
+	// insere dez primeiros registros
 	private void inserirDezPrimeiros(){
 		for(int i=0; i<this.quantidade; i++){
 			inserirRegistro(i);
@@ -23,6 +26,7 @@ public class TabelaRegistros extends Tabela{
 		adicionaLinha("");
 	}
 
+	// Insere registros na tabela
 	private void inserirRegistro(int index){
 		Registro registro = this.registros.get(index);
 		int indexLinha = index+2;

@@ -2,10 +2,12 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Gerar {
+	// Gera número inteiro
 	static public int inteiro(int min, int max){
         return (int) Math.floor(Math.random() * (max - min + 1) + min);
     }
 
+	// Gera um registro
 	static public Registro registro(int id){
 		Registro registro = new Registro();
 		registro.setId(id);
@@ -13,6 +15,7 @@ public class Gerar {
 		return registro;
 	}
 
+	// Gera um certo número de registros
 	static public List<Registro> registros(int quantidade){
 		List<Registro> registros = new ArrayList<Registro>();
 		for(int i = 0; i < quantidade; i++){
@@ -21,11 +24,7 @@ public class Gerar {
 		return registros;
 	}
 
-	// static private Object aleatorioDaLista(List<Object> lista) {
-
-	// }
-
-
+	// Gera um nome
 	static public String nome(char sexo){
 		List<String> nomes = ArquivoUtils.getNomes(sexo);
 		int size = nomes.size();
@@ -34,6 +33,7 @@ public class Gerar {
 
 	}
 
+	// Gera um sobrenome
 	static public String sobrenome(){
 		List<String> sobrenomes = ArquivoUtils.getSobrenomes();
 		int size = sobrenomes.size();
@@ -41,6 +41,7 @@ public class Gerar {
 		return sobrenomes.get(index);
 	}
 
+	// Gera um nome completo
 	static public String nomeCompleto(char sexo){
         String completo = String.format(
 			"%s %s %s",
@@ -50,34 +51,13 @@ public class Gerar {
 			);
 		return completo;
 	}
-
-    // static public String nome(){
-	// 	int maxChars = ((80-2)/3);
-	// 	String[] nomes = new String[3];
-	// 	for(int i = 0; i < 3; i++){
-	// 		nomes[i] = umNome(maxChars);
-	// 	}
-	// 	return String.join(" ", nomes);
-	// }
-
-	static public String umNome(int maxChars){
-		int charAmount = Gerar.inteiro(3, maxChars);
-		String nome = "";
-		for(int i = 0; i < charAmount; i++){
-			int numero = Gerar.inteiro(97, 122);
-			if(i == 0){
-				nome += (char)(numero-32);//maiuscula
-			}else{
-				nome += (char)numero;
-			}
-		}
-		return nome;
-	}
     
+	// Gera idade
     static public int idade(){
 		return Gerar.inteiro(10, 50);
 	}
 
+	// Gera sexo
 	static public char sexo(){
 		String letras = "MF";
 		int numero = Gerar.inteiro(0, 1);
@@ -85,6 +65,7 @@ public class Gerar {
 		return sexo;
 	}
 
+	// Gera cpf
 	static public String cpf(){
 		String cpf = "";
 		for(int i = 0; i < 3; i++){
@@ -96,6 +77,7 @@ public class Gerar {
 		return cpf;
 	}
 
+	// Gera cep
 	static public String cep(){
 		String[] ceps = {
 			"36180-000", "25500-000", "36140-000", "37510-234", "12240-000",

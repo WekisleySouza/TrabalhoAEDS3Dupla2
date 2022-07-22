@@ -1,13 +1,13 @@
 To do:
 
-    - Imprimir relatório com 10 primeiros registros (tabela).
 
 Doing:
 
-    - Aumentando a velocidade de geração do arquivo final.
 
 Done:
 
+    - Imprimir relatório com 10 primeiros registros (tabela).
+    - Aumentando a velocidade de geração do arquivo final.
     - Implementar coleta de acessos(Leitura, escrita e movimentação de ponteiro).
     - Implementar coleta do tempo total do processo de intercalação(Inclui da criação das 8 vias até a intercalação final).
     - Melhorar método "cria registro" da classe "ArquivoRegistros" para não criar ids repetidos.

@@ -5,6 +5,7 @@ public class ArquivoFinalIntercalado extends Cronometrado{
     private List<Registro> filaParaGravar;
     private final static int MAX_GRAVACOES_POR_VEZ = 100000;
 
+    // Executa os processos de intercalação:
     public void executar(){
         this.filaParaGravar = new ArrayList<Registro>();
         cronometro.comecar();
@@ -13,10 +14,12 @@ public class ArquivoFinalIntercalado extends Cronometrado{
         cronometro.parar();
     }
 
+    // Retorna o caminho do arquivo final:
     private static String finalPath() {
         return "arquivos//dadosOrdenados.csv";
     }
 
+    // Intercala caminhos:
     private void intercalaCaminhos(List<CaminhoExistente> caminhos) {
         while(!caminhos.isEmpty()) {
             Registro menorRegistro = retiraMenorRegistro(caminhos);
@@ -24,6 +27,7 @@ public class ArquivoFinalIntercalado extends Cronometrado{
         }
     }
 
+    // Coloca um registro na lista de gravação:
     private void colocarNaFilaDeGravacaoNoRegistroFinal(Registro registro){
         filaParaGravar.add(registro);
         if(filaParaGravar.size() >= MAX_GRAVACOES_POR_VEZ){
@@ -32,6 +36,7 @@ public class ArquivoFinalIntercalado extends Cronometrado{
         }
     }
 
+    // Retira menor registro entre as listas que estão sendo intercaladas:
     private static Registro retiraMenorRegistro(List<CaminhoExistente> caminhos){
         CaminhoExistente menorCaminho = menorPrimeiroRegistro(caminhos);
         Registro menorRegistro = menorCaminho.primeiroRegistro();
@@ -42,6 +47,7 @@ public class ArquivoFinalIntercalado extends Cronometrado{
         return menorRegistro;
     }
 
+    // Verifica qual é o menor registro entre as listas:
     private static CaminhoExistente menorPrimeiroRegistro(List<CaminhoExistente> caminhos) {
         CaminhoExistente menorCaminho = caminhos.get(0);
         for(CaminhoExistente caminho : caminhos){
@@ -52,6 +58,7 @@ public class ArquivoFinalIntercalado extends Cronometrado{
         return menorCaminho;
     }
 
+    // Adiciona caminhos a uma lista:
     private static List<CaminhoExistente> todosOsCaminhos(){
         List<CaminhoExistente> caminhos = new ArrayList<>();
         for(int i=0; i<8; i++){
